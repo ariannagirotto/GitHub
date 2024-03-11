@@ -6,3 +6,9 @@ The data set is composed of 170 participants, 84 (49%) were divorced (0) and 86 
 Participants completed the Personal Information Form and Divorce Predictors Scale. All responses were collected on a 5-point scale (0=Never, 1=Seldom, 2=Averagely, 3=Frequently, 4=Always).
 
 
+- Istogrammi e boxplot
+- PCA globale su tutto il dataset togliendo la prima variabile
+- PCA su ogni gruppo di variabili
+- Clustering gerarchico per vedere le cose che influeanza il fatto di essere persone più portate a divorziare o meno: sia globale che dei gruppi
+- Regressione logistica per entrambe
+- Analisi del discriminante per entrambe
