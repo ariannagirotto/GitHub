@@ -204,3 +204,19 @@ pvarsp = autoval/p
 pvarspcum = cumsum(pvarsp)
 pvarsp
 
+###PCA 10 gruppi
+
+gruppo1 <- training[,c(1,3,4,11)]
+gruppo2 <- training[,c(5,8,9)]
+gruppo3 <- training[,c(6,7)]
+gruppo4 <- training[,c(10,12:20)]
+gruppo5 <- training[,21:30]
+gruppo6 <- training[,31:41]
+gruppo7 <- training[,39:40]
+gruppo8 <- training[,42:47]
+gruppo9 <- training[,48:51]
+gruppo10 <- training[,52:54]
+
+
+
+
