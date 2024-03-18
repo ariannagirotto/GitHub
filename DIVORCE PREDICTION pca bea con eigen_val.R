@@ -88,8 +88,8 @@ for (col in names(divorce_data)) {
 ### STATISTICHE DESCRITTIVE
 
 ## BOXPLOT PER OGNI DOMANDA
-ggplot(data = divorce_data, aes(x = factor(Divorce), y = Q1, fill = factor(Divorce))) +
-  geom_boxplot(notch = TRUE, fill = "#ffcb77", outlier.colour = "#fe6d73") +
+ggplot(data = divorce_data, aes(x = factor(Divorce), y = Q32, fill = factor(Divorce))) +
+  geom_boxplot(notch = TRUE, fill = c('orange', 'yellow'), outlier.colour = "#fe6d73") +
   theme_minimal() +
   labs(x = "Divorce", fill = "Divorce") +
   theme(legend.title = element_blank())
@@ -100,7 +100,7 @@ y_values <- paste0("Q", 1:54)
 # Loop per generare e salvare i boxplot per ciascun valore di y
 for (y in y_values) {
   plot <- ggplot(data = divorce_data, aes(x = factor(Divorce), y = !!sym(y), fill = factor(Divorce))) +
-    geom_boxplot(notch = TRUE, fill = "#ffcb77", outlier.colour = "#fe6d73") +
+    geom_boxplot(notch = TRUE, fill = c("#ffcb77", "#48cfae") , outlier.colour = "#fe6d73") +
     theme_minimal() +
     labs(x = "Divorce", y = y, fill = "Divorce") +
     theme(legend.title = element_blank())
@@ -112,7 +112,7 @@ for (y in y_values) {
 
 ## ISTOGRAMMI PER OGNI DOMANDA
 
-plot <- ggplot(data = divorce_data, aes(x = Q1, fill = factor(Divorce))) +
+ist_plot <- ggplot(data = divorce_data, aes(x = Q14, fill = factor(Divorce))) +
   geom_bar(width = 0.5) + 
   facet_wrap(~factor(Divorce)) +
   scale_fill_manual(values = c("#227c9d", "#fe6d73")) + 
@@ -124,9 +124,10 @@ plot <- ggplot(data = divorce_data, aes(x = Q1, fill = factor(Divorce))) +
     strip.text = element_text(size = 5),
     axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
     plot.background = element_rect(fill = NA)) +  
-  labs(title = "If one of us apologizes when our discussion deteriorates, the discussion ends.")
+  labs(title = "Most of our goals for people (children, friends, etc.) are the same.")
 
-plot
+ist_plot
+ggsave(filename = paste0("istogramma_Q14", ".png"), plot = ist_plot)
 
 
 
