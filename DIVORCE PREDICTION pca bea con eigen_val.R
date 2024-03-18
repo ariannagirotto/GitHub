@@ -17,6 +17,7 @@ divorce_data <- read.csv("divorce_data.csv", sep = ";")
 # essere solo: 0, 1, 2, 3, 4, 5
 # anche la variabile risposta "Divorce" deve essere type factor
 
+divorce_data <- data.frame(divorce_data[,-55]+1, divorce_data[,55])
 
 str(divorce_data)
 
@@ -85,7 +86,53 @@ for (col in names(divorce_data)) {
 ##### -> TRAINING
 
 ### STATISTICHE DESCRITTIVE
-summary(training)
+
+## BOXPLOT PER OGNI DOMANDA
+ggplot(data = divorce_data, aes(x = factor(Divorce), y = Q1, fill = factor(Divorce))) +
+  geom_boxplot(notch = TRUE, fill = "#ffcb77", outlier.colour = "#fe6d73") +
+  theme_minimal() +
+  labs(x = "Divorce", fill = "Divorce") +
+  theme(legend.title = element_blank())
+
+# Creazione di una lista di y-values
+y_values <- paste0("Q", 1:54)
+
+# Loop per generare e salvare i boxplot per ciascun valore di y
+for (y in y_values) {
+  plot <- ggplot(data = divorce_data, aes(x = factor(Divorce), y = !!sym(y), fill = factor(Divorce))) +
+    geom_boxplot(notch = TRUE, fill = "#ffcb77", outlier.colour = "#fe6d73") +
+    theme_minimal() +
+    labs(x = "Divorce", y = y, fill = "Divorce") +
+    theme(legend.title = element_blank())
+  
+  # Salvataggio del boxplot come file immagine
+  ggsave(filename = paste0("boxplot_", y, ".png"), plot = plot)
+}
+
+
+## ISTOGRAMMI PER OGNI DOMANDA
+
+plot <- ggplot(data = divorce_data, aes(x = Q1, fill = factor(Divorce))) +
+  geom_bar(width = 0.5) + 
+  facet_wrap(~factor(Divorce)) +
+  scale_fill_manual(values = c("#227c9d", "#fe6d73")) + 
+  theme_minimal() +  
+  theme(
+    legend.position = "none",
+    panel.spacing = unit(0.5, "lines"),
+    axis.ticks.x = element_blank(),
+    strip.text = element_text(size = 5),
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+    plot.background = element_rect(fill = NA)) +  
+  labs(title = "If one of us apologizes when our discussion deteriorates, the discussion ends.")
+
+plot
+
+
+
+
+
+
 
 
 ### ANALISI CORRELAZIONE
@@ -217,15 +264,7 @@ gruppo8 <- training[,42:47]
 gruppo9 <- training[,48:51]
 gruppo10 <- training[,52:54]
 
-acp <- princomp(gruppo1, cor=T)
-summary(acp)
-screeplot(acp)
 
-plot(acp$scores)
-text(acp$scores, rownames(nuovi_dati))
-abline(h=0, v=0)
-
-biplot(acp)
 
 
 
