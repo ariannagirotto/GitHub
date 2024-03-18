@@ -217,6 +217,15 @@ gruppo8 <- training[,42:47]
 gruppo9 <- training[,48:51]
 gruppo10 <- training[,52:54]
 
+acp <- princomp(gruppo1, cor=T)
+summary(acp)
+screeplot(acp)
+
+plot(acp$scores)
+text(acp$scores, rownames(nuovi_dati))
+abline(h=0, v=0)
+
+biplot(acp)
 
 
 

@@ -148,6 +148,16 @@ ggplot(data = loadings_1, aes(Var2, Var1, fill = value)) +
   labs(title = "Heatmap della Componenti Principali",
        x = "Variabile",
        y = "Variabile")
-       
+
+# Moltiplicare i loading per le osservazioni per ottenere le PCs da utilizzare
+# nella regressione logistica
+PCs <- predict(acp)[, 1:5]
+PCs
+
+training$Divorce <- as.factor(training$Divorce)
+modello <- glm(Divorce~PCs,family=binomial,data=training)
+summary(modello)
+
+
 
 
