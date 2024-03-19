@@ -3,13 +3,12 @@ atribute_id|description
 2|I know we can ignore our differences, even if things get hard sometimes.
 3|When we need it, we can take our discussions with my spouse from the beginning and correct it.
 4|When I discuss with my spouse, to contact him will eventually work.
-
-
 5|The time I spent with my wife is special for us.
-6|We don't have time at home as partners.
-7|We are like two strangers who share the same environment at home rather than family.
 8|I enjoy our holidays with my wife.
 9|I enjoy traveling with my wife.
+
+6|We don't have time at home as partners.
+7|We are like two strangers who share the same environment at home rather than family.
 
 21|I know exactly what my wife likes.
 22|I know how my spouse wants to be taken care of when she/he sick.
@@ -77,16 +76,19 @@ atribute_id|description
 •⁠  ⁠Individual Areas of Concern: individual issues, safety, sex, depression, drug and alcohol use, violence, anxiety, and other issues that may need psychological or psychiatric help
 
 Friendship and Intimacy:
-5,  6, 7, 8, 9
+1,2,3,4,5, 8, 9
 
 Knowledge of the spouse
 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
 
-The Safety Scales:
-1, 2, 3, 4
+Indifference:
+6,7
+
+Intensita emotiva:
+31, 32, 33, 34, 35, 36, 37, 38, 
 
 The Conflict Scales:
-31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54
+39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54
 
 The Shared Meaning System:
 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
