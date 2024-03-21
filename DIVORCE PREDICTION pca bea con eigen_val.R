@@ -112,7 +112,7 @@ for (y in y_values) {
 
 ## ISTOGRAMMI PER OGNI DOMANDA
 
-ist_plot <- ggplot(data = divorce_data, aes(x = Q14, fill = factor(Divorce))) +
+ist_plot <- ggplot(data = divorce_data, aes(x = Q24, fill = factor(Divorce))) +
   geom_bar(width = 0.5) + 
   facet_wrap(~factor(Divorce)) +
   scale_fill_manual(values = c("#227c9d", "#fe6d73")) + 
@@ -124,13 +124,10 @@ ist_plot <- ggplot(data = divorce_data, aes(x = Q14, fill = factor(Divorce))) +
     strip.text = element_text(size = 5),
     axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
     plot.background = element_rect(fill = NA)) +  
-  labs(title = "Most of our goals for people (children, friends, etc.) are the same.")
+  labs(title = "I can tell you what kind of stress my spouse is facing in her/his life.")
 
 ist_plot
-ggsave(filename = paste0("istogramma_Q14", ".png"), plot = ist_plot)
-
-
-
+ggsave(filename = paste0("istogramma_Q24", ".png"), plot = ist_plot)
 
 
 
@@ -264,6 +261,7 @@ gruppo7 <- training[,39:40]
 gruppo8 <- training[,42:47]
 gruppo9 <- training[,48:51]
 gruppo10 <- training[,52:54]
+
 
 
 
