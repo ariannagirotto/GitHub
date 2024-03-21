@@ -4,23 +4,10 @@ atribute_id|description
 3|When we need it, we can take our discussions with my spouse from the beginning and correct it.
 4|When I discuss with my spouse, to contact him will eventually work.
 5|The time I spent with my wife is special for us.
-8|I enjoy our holidays with my wife.
-9|I enjoy traveling with my wife.
-
 6|We don't have time at home as partners.
 7|We are like two strangers who share the same environment at home rather than family.
-
-21|I know exactly what my wife likes.
-22|I know how my spouse wants to be taken care of when she/he sick.
-23|I know my spouse's favorite food.
-24|I can tell you what kind of stress my spouse is facing in her/his life.
-25|I have knowledge of my spouse's inner world.
-26|I know my spouse's basic anxieties.
-27|I know what my spouse's current sources of stress are.
-28|I know my spouse's hopes and wishes.
-29|I know my spouse very well.
-30|I know my spouse's friends and their social relationships.
-
+8|I enjoy our holidays with my wife.
+9|I enjoy traveling with my wife.
 10|Most of our goals are common to my spouse.
 11|I think that one day in the future, when I look back, I see that my spouse and I have been in harmony with each other.
 12|My spouse and I have similar values in terms of personal freedom.
@@ -32,7 +19,16 @@ atribute_id|description
 18|My spouse and I have similar ideas about how marriage should be
 19|My spouse and I have similar ideas about how roles should be in marriage
 20|My spouse and I have similar values in trust.
-
+21|I know exactly what my wife likes.
+22|I know how my spouse wants to be taken care of when she/he sick.
+23|I know my spouse's favorite food.
+24|I can tell you what kind of stress my spouse is facing in her/his life.
+25|I have knowledge of my spouse's inner world.
+26|I know my spouse's basic anxieties.
+27|I know what my spouse's current sources of stress are.
+28|I know my spouse's hopes and wishes.
+29|I know my spouse very well.
+30|I know my spouse's friends and their social relationships.
 31|I feel aggressive when I argue with my spouse.
 32|When discussing with my spouse, I usually use expressions such as ‘you always’ or ‘you never’ .
 33|I can use negative statements about my spouse's personality during our discussions.
@@ -58,37 +54,22 @@ atribute_id|description
 53|When I discuss, I remind my spouse of her/his inadequacy.
 54|I'm not afraid to tell my spouse about her/his incompetence.
 
+Groups:
 
+1)  ⁠Friendship and Intimacy: relationship satisfaction, emotional connection, romance, and admiration
+    questions: 1,2,3,4,5, 8, 9
 
+2)⁠  ⁠Knowledge of the spouse
+    questions: 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
 
-•⁠  ⁠Friendship and Intimacy: relationship satisfaction, emotional connection, romance, and admiration
+3)⁠  Indifference towards the spouse
+    questions: 6,7
 
+4)⁠  Aggressiveness during discussions
+    questions: 31, 32, 33, 34, 35, 36, 37, 38
 
-•⁠  ⁠The Safety Scales: trust, chaos, commitment, and emotional philosophies
+5)  ⁠The Conflict Scales: stress, relationship harshness, and conflict management
+    questions: 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54
 
-
-•⁠  ⁠The Conflict Scales: stress, relationship harshness, and conflict management
-
-
-•⁠  ⁠The Shared Meaning System: shared rituals, values, and goals
-
-
-•⁠  ⁠Individual Areas of Concern: individual issues, safety, sex, depression, drug and alcohol use, violence, anxiety, and other issues that may need psychological or psychiatric help
-
-Friendship and Intimacy:
-1,2,3,4,5, 8, 9
-
-Knowledge of the spouse
-21, 22, 23, 24, 25, 26, 27, 28, 29, 30
-
-Indifference:
-6,7
-
-Intensita emotiva:
-31, 32, 33, 34, 35, 36, 37, 38, 
-
-The Conflict Scales:
-39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54
-
-The Shared Meaning System:
-10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+6)⁠  ⁠The Shared Meaning System: shared rituals, values, and goals
+    questions: 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
