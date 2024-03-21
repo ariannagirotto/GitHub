@@ -1,11 +1,7 @@
 ########### DIVORCE PREDICTION########### 
 ### Clavarino - Girotto - Gomez - Peri - Reyes - Rosa ###
 
-<<<<<<< HEAD
 #Libraries
-=======
-###
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 library(readr)
 library(corrplot) 
 library(ggplot2)
@@ -14,43 +10,22 @@ library(caret)
 library(nnet)
 library(glmnet)
 library(MASS)
-<<<<<<< HEAD
 library(ROCR)
 library(tree)
 library(dplyr)
 library(rpart)
 library(rpart.plot)
-=======
-library(tree)
-library(dplyr)
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 ###
 
 divorce_data <- read.csv("divorce_data.csv", sep = ";")
 datatable(divorce_data)
-<<<<<<< HEAD
 sum(divorce_data[,55]) #=84, number of married individuals
-=======
-sum(divorce_data[,55])
-
-############
-divorce_data[, 31:54] <- lapply(divorce_data[, 31:54], function(x) {
-  ifelse(x == 0, 4,
-         ifelse(x == 1, 3,
-                ifelse(x == 3, 1,
-                       ifelse(x == 4, 0, x))))
-})
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 ############
 
 # add 1 to all values in columns except the 55th column and 
 #combine them to the 55th column to avoid division by zero.
 divorce_data <- data.frame(divorce_data[,-55]+1, divorce_data[,55])
-<<<<<<< HEAD
 names(divorce_data)[55] <- "Divorce" #edits name of Divorce column
-=======
-names(divorce_data)[55] <- "Divorce"
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 
 str(divorce_data)
 
@@ -83,12 +58,8 @@ for (col in names(divorce_data)) {
 
 ### DESCRIPTIVE STATISTICS
 
-<<<<<<< HEAD
 summary(divorce_data)
 
-=======
-summary(training)
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 
 ## BOXPLOT for each variable
 ggplot(data = divorce_data, aes(x = factor(Divorce), y = Q31, fill = factor(Divorce))) +
@@ -107,18 +78,11 @@ for (y in y_values) {
     theme_minimal() +
     labs(x = "Divorce", y = y, fill = "Divorce") +
     theme(legend.title = element_blank())
-<<<<<<< HEAD
   print(plot)
-=======
-  
-  # Salvataggio del boxplot come file immagine
-  ggsave(filename = paste0("boxplot_", y, ".png"), plot = plot)
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 }
 
 
 ## HISTOGRAM for each variable
-<<<<<<< HEAD
 for (y in y_values) {
   ist_plot <- ggplot(data = divorce_data, aes(x = !!sym(y), fill = factor(Divorce))) +
     geom_bar(width = 0.5) + 
@@ -135,25 +99,6 @@ for (y in y_values) {
   print(ist_plot)
 }
 
-=======
-
-ist_plot <- ggplot(data = divorce_data, aes(x = Q31, fill = factor(Divorce))) +
-  geom_bar(width = 0.5) + 
-  facet_wrap(~factor(Divorce)) +
-  scale_fill_manual(values = c("#227c9d", "#fe6d73")) + 
-  theme_minimal() +  
-  theme(
-    legend.position = "none",
-    panel.spacing = unit(0.5, "lines"),
-    axis.ticks.x = element_blank(),
-    strip.text = element_text(size = 5),
-    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
-    plot.background = element_rect(fill = NA)) +  
-  labs(title = "I can tell you what kind of stress my spouse is facing in her/his life.")
-
-ist_plot
-ggsave(filename = paste0("istogramma_Q24",".png"),plot=ist_plot)
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 
 ### HISTOGRAM for each variable divided by group
 
@@ -162,7 +107,6 @@ ggsave(filename = paste0("istogramma_Q24",".png"),plot=ist_plot)
 ## Group 1: Friendship and Intimacy
 gruppo1 <- divorce_data[,c(1:5, 8, 9, 55)]
 
-<<<<<<< HEAD
 # Group 1: divorced
 divorziati_1 <- gruppo1%>%filter(gruppo1$Divorce == 0)
 sposati_1 <- gruppo1%>%filter(gruppo1$Divorce == 1)
@@ -183,51 +127,11 @@ par(mfrow = c(2, 1)) #dimensions graph window
 par(mar = c(4, 4, 2, 2))  #margins
 
 # Group 1: plot for divorced
-=======
-divorziati_1 <- gruppo1%>%filter(gruppo1$Divorce == 0)
-sposati_1 <- gruppo1%>%filter(gruppo1$Divorce == 1)
-
-
-# Unisci i dati di tutte le variabili in un unico vettore
-divor_1 <- c(divorziati_1$Q1, divorziati_1$Q2, divorziati_1$Q3, divorziati_1$Q4, 
-             divorziati_1$Q5, divorziati_1$Q8, divorziati_1$Q9)
-density_data_div_1 <- density(divor_1)
-
-# Calcola il valore massimo della densità di kernel
-max_density_div_1 <- max(density_data_div_1$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylimd <- c(0, max_density_div_1 * 2.1)  # Aumenta il limite superiore del 20% rispetto al massimo della densità
-
-
-## Unisci i dati di tutte le variabili in un unico vettore
-spos_1 <- c(sposati_1$Q1, sposati_1$Q2, sposati_1$Q3, sposati_1$Q4, 
-            sposati_1$Q5, sposati_1$Q8, sposati_1$Q9)
-density_data_spos_1 <- density(spos_1)
-
-# Calcola il valore massimo della densità di kernel
-max_density_spos_1 <- max(density_data_spos_1$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylims <- c(0, max_density_spos_1 * 1.2) 
-
-
-# Imposta le dimensioni della finestra grafica
-par(mfrow = c(2, 1))
-par(mar = c(4, 4, 2, 2))  # Imposta i margini della figura (bottom, left, top, right)
-
-# Plot dell'istogramma per il gruppo divorziato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(divor_1, main = "FRIENDSHIP AND INTIMACY", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#c6302c", border = "white", ylim = ylimd)
 lines(density_data_div_1, col = "#111344", lwd = 2)
 
-<<<<<<< HEAD
 # Group 1: plot for married
-=======
-
-# Plot dell'istogramma per il gruppo sposato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(spos_1, main = "", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#227c9d", border = "white", ylim = ylims)
 lines(density_data_spos_1, col = "#111344", lwd = 2)
@@ -237,42 +141,23 @@ lines(density_data_spos_1, col = "#111344", lwd = 2)
 ## Gruppo 2: Knowledge of the spouse
 gruppo2 <- divorce_data[,c(21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 55)]
 
-<<<<<<< HEAD
 # Group 2: divorced
 divorziati_2 <- gruppo2%>%filter(gruppo2$Divorce == 0)
 sposati_2 <- gruppo2%>%filter(gruppo2$Divorce == 1)
-=======
-divorziati_2 <- gruppo2%>%filter(gruppo2$Divorce == 0)
-sposati_2 <- gruppo2%>%filter(gruppo2$Divorce == 1)
-
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 divor_2 <- c(divorziati_2$Q21, divorziati_2$Q22, divorziati_2$Q23, divorziati_2$Q24, 
              divorziati_2$Q25, divorziati_2$Q26, divorziati_2$Q27, divorziati_2$Q28,
              divorziati_2$Q29, divorziati_2$Q30, divorziati_2$Q55)
 density_data_div_2 <- density(divor_2)
-<<<<<<< HEAD
 max_density_div_2 <- max(density_data_div_2$y)
 
 ylimd <- c(0, max_density_div_2 * 5)  
 xlim <- c(1, 5)
 
 # Group 2: married
-=======
-
-
-# Calcola il valore massimo della densità di kernel
-max_density_div_2 <- max(density_data_div_2$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylimd <- c(0, max_density_div_2 * 5)  
-xlim <- c(1, 5)
-## Unisci i dati di tutte le variabili in un unico vettore
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 spos_2 <- c(sposati_2$Q21, sposati_2$Q22, sposati_2$Q23, sposati_2$Q24, 
             sposati_2$Q25, sposati_2$Q26, sposati_2$Q27, sposati_2$Q28,
             sposati_2$Q29, sposati_2$Q30, sposati_2$Q55)
 density_data_spos_2 <- density(spos_2)
-<<<<<<< HEAD
 max_density_spos_2 <- max(density_data_spos_2$y)
 ylims <- c(0, max_density_spos_2 * 1.2) 
 xlim <- c(1, 5)
@@ -281,48 +166,23 @@ par(mfrow = c(2, 1))
 par(mar = c(4, 4, 2, 2))
 
 # Group 2: plot for divorced
-=======
-
-# Calcola il valore massimo della densità di kernel
-max_density_spos_2 <- max(density_data_spos_2$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylims <- c(0, max_density_spos_2 * 1.2) 
-xlim <- c(1, 5)
-
-# Imposta le dimensioni della finestra grafica
-par(mfrow = c(2, 1))
-par(mar = c(4, 4, 2, 2))  # Imposta i margini della figura (bottom, left, top, right)
-
-# Plot dell'istogramma per il gruppo divorziato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(divor_2, main = "KNOWLEDGE OF THE SPOUSE", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#c6302c", border = "white", xlim = xlim, ylim = ylimd)
 lines(density_data_div_2, col = "#111344", lwd = 2)
 
-<<<<<<< HEAD
 # Group 2: plot for married
-=======
-
-# Plot dell'istogramma per il gruppo sposato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(spos_2, main = "", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#227c9d", border = "white", xlim = xlim, ylim = ylims)
 lines(density_data_spos_2, col = "#111344", lwd = 2)
 
 
 
-<<<<<<< HEAD
 ## Gruppo 3: Indifference:
-=======
-## Gruppo 3: indifferenza:
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 gruppo3 <- divorce_data[,c(6,7, 55)]
 
 divorziati_3 <- gruppo3%>%filter(gruppo3$Divorce == 0)
 sposati_3 <- gruppo3%>%filter(gruppo3$Divorce == 1)
 
-<<<<<<< HEAD
 # Group 3: divorced
 divor_3 <- c(divorziati_3$Q6, divorziati_3$Q7, divorziati_3$Q55)
 density_data_div_3 <- density(divor_3)
@@ -345,44 +205,11 @@ par(mfrow = c(2, 1))
 par(mar = c(4, 4, 2, 2))  
 
 # Group 3: plot for divorced
-=======
-divor_3 <- c(divorziati_3$Q6, divorziati_3$Q7, divorziati_3$Q55)
-density_data_div_3 <- density(divor_3)
-
-
-# Calcola il valore massimo della densità di kernel
-max_density_div_3 <- max(density_data_div_3$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylimd <- c(0, max_density_div_3 * 3)  
-xlim <- c(1, 5)
-## Unisci i dati di tutte le variabili in un unico vettore
-spos_3 <- c(sposati_3$Q6, sposati_3$Q7, sposati_3$Q55)
-density_data_spos_3 <- density(spos_3)
-
-# Calcola il valore massimo della densità di kernel
-max_density_spos_3 <- max(density_data_spos_3$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylims <- c(0, max_density_spos_3 * 1.2) 
-xlim <- c(1, 5)
-
-# Imposta le dimensioni della finestra grafica
-par(mfrow = c(2, 1))
-par(mar = c(4, 4, 2, 2))  # Imposta i margini della figura (bottom, left, top, right)
-
-# Plot dell'istogramma per il gruppo divorziato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(divor_3, main = "INDIFFERENCE", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#c6302c", border = "white", xlim = xlim, ylim = ylimd)
 lines(density_data_div_3, col = "#111344", lwd = 2)
 
-<<<<<<< HEAD
 # Group 3: plot for married
-=======
-
-# Plot dell'istogramma per il gruppo sposato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(spos_3, main = "", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#227c9d", border = "white", xlim = xlim, ylim = ylims)
 lines(density_data_spos_3, col = "#111344", lwd = 2)
@@ -394,39 +221,23 @@ gruppo4 <- divorce_data[,c(31, 32, 33, 34, 35, 36, 37, 38, 55)]
 divorziati_4 <- gruppo4%>%filter(gruppo4$Divorce == 0)
 sposati_4 <- gruppo4%>%filter(gruppo4$Divorce == 1)
 
-<<<<<<< HEAD
 # Group 4: divorced
-=======
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 divor_4 <- c(divorziati_4$Q31, divorziati_4$Q32, divorziati_4$Q33,divorziati_4$Q34,
              divorziati_4$Q35, divorziati_4$Q36, divorziati_4$Q37, divorziati_4$Q38,
              divorziati_4$Q55)
 density_data_div_4 <- density(divor_4)
 
-<<<<<<< HEAD
 max_density_div_4 <- max(density_data_div_4$y)
 
 ylimd <- c(0, max_density_div_4 * 4)  
 xlim <- c(1, 5)
 
 # Group 4: married
-=======
-
-# Calcola il valore massimo della densità di kernel
-max_density_div_4 <- max(density_data_div_4$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylimd <- c(0, max_density_div_4 * 4)  
-xlim <- c(1, 5)
-## Unisci i dati di tutte le variabili in un unico vettore
-
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 spos_4 <- c(sposati_4$Q31, sposati_4$Q32, sposati_4$Q33, sposati_4$Q34,
             sposati_4$Q35, sposati_4$Q36, sposati_4$Q37, sposati_4$Q38,
             sposati_4$Q55)
 density_data_spos_4 <- density(spos_4)
 
-<<<<<<< HEAD
 max_density_spos_4 <- max(density_data_spos_4$y)
 
 ylims <- c(0, max_density_spos_4 * 4) 
@@ -436,48 +247,23 @@ par(mfrow = c(2, 1))
 par(mar = c(4, 4, 2, 2)) 
 
 # Group 4: plot for divorced
-=======
-# Calcola il valore massimo della densità di kernel
-max_density_spos_4 <- max(density_data_spos_4$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylims <- c(0, max_density_spos_4 * 4) 
-xlim <- c(1, 5)
-
-# Imposta le dimensioni della finestra grafica
-par(mfrow = c(2, 1))
-par(mar = c(4, 4, 2, 2))  # Imposta i margini della figura (bottom, left, top, right)
-
-# Plot dell'istogramma per il gruppo divorziato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(divor_4, main = "EMOTIONAL INTENSITY", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#c6302c", border = "white", xlim = xlim, ylim = ylimd)
 lines(density_data_div_4, col = "#111344", lwd = 2)
 
-<<<<<<< HEAD
 # Group 4: plot for married
-=======
-
-# Plot dell'istogramma per il gruppo sposato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(spos_4, main = "", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#227c9d", border = "white", xlim = xlim, ylim = ylims)
 lines(density_data_spos_4, col = "#111344", lwd = 2)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 ## Gruppo 5: Conflict Scales:
 gruppo5 <- divorce_data[,c(39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55)]
 
 divorziati_5 <- gruppo5%>%filter(gruppo5$Divorce == 0)
 sposati_5 <- gruppo5%>%filter(gruppo5$Divorce == 1)
 
-<<<<<<< HEAD
 # Group 5: divorced
-=======
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 divor_5 <- c(divorziati_5$Q39, divorziati_5$Q40, divorziati_5$Q41,divorziati_5$Q42,
              divorziati_5$Q43, divorziati_5$Q44, divorziati_5$Q45, divorziati_5$Q46,
              divorziati_5$Q47, divorziati_5$Q48, divorziati_5$Q49, divorziati_5$Q50,
@@ -485,24 +271,12 @@ divor_5 <- c(divorziati_5$Q39, divorziati_5$Q40, divorziati_5$Q41,divorziati_5$Q
              divorziati_5$Q55)
 density_data_div_5 <- density(divor_5)
 
-<<<<<<< HEAD
 max_density_div_5 <- max(density_data_div_5$y)
 
 ylimd <- c(0, max_density_div_5 * 4)  
 xlim <- c(1, 5)
 
 # Group 5: married
-=======
-
-# Calcola il valore massimo della densità di kernel
-max_density_div_5 <- max(density_data_div_5$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylimd <- c(0, max_density_div_5 * 4)  
-xlim <- c(1, 5)
-## Unisci i dati di tutte le variabili in un unico vettore
-
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 spos_5 <-  c(sposati_5$Q39, sposati_5$Q40, sposati_5$Q41,sposati_5$Q42,
              sposati_5$Q43, sposati_5$Q44, sposati_5$Q45, sposati_5$Q46,
              sposati_5$Q47, sposati_5$Q48, sposati_5$Q49, sposati_5$Q50,
@@ -510,7 +284,6 @@ spos_5 <-  c(sposati_5$Q39, sposati_5$Q40, sposati_5$Q41,sposati_5$Q42,
              sposati_5$Q55)
 density_data_spos_5 <- density(spos_5)
 
-<<<<<<< HEAD
 max_density_spos_5 <- max(density_data_spos_5$y)
 
 ylims <- c(0, max_density_spos_5 * 4) 
@@ -520,38 +293,16 @@ par(mfrow = c(2, 1))
 par(mar = c(4, 4, 2, 2))  
 
 # Group 5: plot for divorced
-=======
-# Calcola il valore massimo della densità di kernel
-max_density_spos_5 <- max(density_data_spos_5$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylims <- c(0, max_density_spos_5 * 4) 
-xlim <- c(1, 5)
-
-# Imposta le dimensioni della finestra grafica
-par(mfrow = c(2, 1))
-par(mar = c(4, 4, 2, 2))  # Imposta i margini della figura (bottom, left, top, right)
-
-# Plot dell'istogramma per il gruppo divorziato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(divor_5, main = "CONFLICT SCALES", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#c6302c", border = "white", xlim = xlim, ylim = ylimd)
 lines(density_data_div_5, col = "#111344", lwd = 2)
 
-<<<<<<< HEAD
 # Group 5: plot for married
-=======
-
-# Plot dell'istogramma per il gruppo sposato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(spos_5, main = "", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#227c9d", border = "white", xlim = xlim, ylim = ylims)
 lines(density_data_spos_5, col = "#111344", lwd = 2)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 ## Gruppo 6: Shared Meaning System:
 gruppo6 <- divorce_data[,c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 55)]
 
@@ -563,30 +314,17 @@ divor_6 <- c(divorziati_6$Q10, divorziati_6$Q11, divorziati_6$Q12,divorziati_6$Q
              divorziati_6$Q18, divorziati_6$Q19, divorziati_6$Q20, divorziati_6$Q55)
 density_data_div_6 <- density(divor_6)
 
-<<<<<<< HEAD
 max_density_div_6 <- max(density_data_div_6$y)
 
 ylimd <- c(0, max_density_div_6 * 4)  
 xlim <- c(1, 5)
 
 # Group 6: married
-=======
-
-# Calcola il valore massimo della densità di kernel
-max_density_div_6 <- max(density_data_div_6$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylimd <- c(0, max_density_div_6 * 4)  
-xlim <- c(1, 5)
-## Unisci i dati di tutte le variabili in un unico vettore
-
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 spos_6 <- c(sposati_6$Q10, sposati_6$Q11, sposati_6$Q12,sposati_6$Q13,
             sposati_6$Q14, sposati_6$Q15, sposati_6$Q16, sposati_6$Q17,
             sposati_6$Q18, sposati_6$Q19, sposati_6$Q20, sposati_6$Q55)
 density_data_spos_6 <- density(spos_6)
 
-<<<<<<< HEAD
 max_density_spos_6 <- max(density_data_spos_6$y)
 
 ylims <- c(0, max_density_spos_6 * 4) 
@@ -596,30 +334,12 @@ par(mfrow = c(2, 1))
 par(mar = c(4, 4, 2, 2))
 
 # Group 6: plot for divorced
-=======
-# Calcola il valore massimo della densità di kernel
-max_density_spos_6 <- max(density_data_spos_6$y)
-
-# Imposta i limiti dell'asse y dell'istogramma
-ylims <- c(0, max_density_spos_6 * 4) 
-xlim <- c(1, 5)
-
-# Imposta le dimensioni della finestra grafica
-par(mfrow = c(2, 1))
-par(mar = c(4, 4, 2, 2))  # Imposta i margini della figura (bottom, left, top, right)
-
-# Plot dell'istogramma per il gruppo divorziato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(divor_6, main = "SHARED MEANING SYSTEM ", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#c6302c", border = "white", xlim = xlim, ylim = ylimd)
 lines(density_data_div_6, col = "#111344", lwd = 2)
 
 
-<<<<<<< HEAD
 # Group 6: plot for married
-=======
-# Plot dell'istogramma per il gruppo sposato
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 hist(spos_6, main = "", xlab = "Answer", ylab = "Density", freq = FALSE, 
      col = "#227c9d", border = "white", xlim = xlim, ylim = ylims)
 lines(density_data_spos_6, col = "#111344", lwd = 2)
@@ -830,7 +550,6 @@ cor(train.df)
 # too high correlations!
 
 
-<<<<<<< HEAD
 ### DECISION TREE
 albero <- tree(Divorce~., data = train.df)
 summary(albero)
@@ -1094,18 +813,6 @@ confusionMatrix(factor(test.df.4[, 5]), factor(as.vector(pred_rf_class)))
 accuracy_tree <- mean(preds_tree == test.df.4$Divorce)
 # 1
 confusionMatrix(factor(test.df.4[, 5]), factor(as.vector(preds_tree)))
-=======
-
-### tradurre in inglese la parte di istogrammi divorced e non divorced
-
-
-########Copia:
-### Ridge regression Arianna
-### Logistic Regression Arianna
-### radom foste gruppi, buon risultato Arianna
-
-## PCA Tot Sara
->>>>>>> 5da49beb66564f4489d2824ef644b7925cc1d2b4
 
 
 
