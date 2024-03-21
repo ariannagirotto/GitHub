@@ -712,6 +712,13 @@ predictions_rf_4 <- predict(rf_model_4, newdata = test.df.4)
 accuracy_4 <- mean(predictions_rf_4 == test.df.4$Divorce)
 accuracy_4
 
+# mettere i nomi delle colonne di test uguali a quelle di train.df
+names(test.df) <- c("friend_int", 
+                    "knowledge", 
+                    "indifference", 
+                    "aggression", 
+                    "conflict_manag",
+                    "shared_goals", "Divorce")
 
 ## Random forest sul dataset dei gruppi
 train.df$Divorce <- as.factor(train.df$Divorce)
@@ -719,8 +726,12 @@ test.df$Divorce <- as.factor(test.df$Divorce)
 rf_model <- randomForest(Divorce ~ ., data = train.df)
 print(rf_model)
 predictions_rf <- predict(rf_model, newdata = test.df)
-accuracy <- mean(pred_rf_class == test.df$Divorce)
+accuracy <- mean(predictions_rf == test.df$Divorce)
 accuracy
+
+
+
+
 
 ## Features
 
