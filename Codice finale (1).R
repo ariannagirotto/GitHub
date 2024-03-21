@@ -795,9 +795,9 @@ confusionMatrix(factor(test.df.4[, 5]), factor(as.vector(lda.pred)))
 
 
 accuracy_rf <- mean(pred_rf_class == test.df.4$Divorce)
-# 0.9411765
+# 1.0000
 confusionMatrix(factor(test.df.4[, 5]), factor(as.vector(pred_rf_class)))
-# Accuracy : 0.9412 
+# Accuracy : 1.0000
 # Sensitivity : 0.8824          
 # Specificity : 1.0000
 
